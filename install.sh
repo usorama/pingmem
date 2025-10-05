@@ -481,6 +481,8 @@ DESCRIPTION:
       2. Install Ollama (if not present)
       3. Download qwen2.5-coder:1.5b model (~1GB)
       4. Configure memory system for enhanced intent analysis
+      5. Install and register memory system hooks in Claude Code
+      6. Verify complete integration with end-to-end tests
 
     If Ollama cannot be installed, the system will automatically
     fall back to regex-only mode (basic pattern matching).
@@ -526,6 +528,8 @@ main() {
     echo "  2. Install Ollama (if not present)"
     echo "  3. Download qwen2.5-coder:1.5b model (~1GB)"
     echo "  4. Configure memory system for enhanced intent analysis"
+    echo "  5. Install and register memory system hooks"
+    echo "  6. Verify complete integration"
     echo ""
     echo "If Ollama cannot be installed, the system will automatically"
     echo "fall back to regex-only mode (basic pattern matching)."
@@ -612,9 +616,69 @@ main() {
         configure_memory_regex_only
     fi
 
-    # Phase 5: Final Verification
+    # Phase 5: Hook Installation & Registration
     echo ""
-    print_step "Phase 5/5: Verifying installation..."
+    print_step "Phase 5/6: Installing memory system hooks..."
+
+    # Get script directory
+    SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+    # Copy hooks to ~/.claude/hooks/
+    if [[ "$DRY_RUN" == false ]]; then
+        mkdir -p "$HOME/.claude/hooks"
+
+        # Copy Python hooks
+        for hook in memory-update-posttooluse.py github-issue-automation.py pending-issues-check.py; do
+            if [[ -f "$SCRIPT_DIR/core/hooks/$hook" ]]; then
+                cp "$SCRIPT_DIR/core/hooks/$hook" "$HOME/.claude/hooks/"
+                chmod +x "$HOME/.claude/hooks/$hook"
+                print_success "Installed: $hook"
+            else
+                print_warning "Not found: $hook (skipping)"
+            fi
+        done
+
+        # Register hooks in settings.json
+        print_step "Registering hooks in Claude Code..."
+        if python3 "$SCRIPT_DIR/core/scripts/register-hooks.py"; then
+            print_success "Hooks registered in ~/.claude/settings.json"
+        else
+            print_error "Failed to register hooks"
+            print_info "You may need to manually add hooks to ~/.claude/settings.json"
+        fi
+    else
+        print_info "[DRY-RUN] Would copy hooks to ~/.claude/hooks/"
+        print_info "[DRY-RUN] Would register hooks in settings.json"
+    fi
+
+    # Phase 6: Final Verification
+    echo ""
+    print_step "Phase 6/6: Verifying installation..."
+
+    if [[ "$DRY_RUN" == false ]]; then
+        # Run integration verification
+        if [[ -f "$SCRIPT_DIR/core/scripts/verify-integration.sh" ]]; then
+            echo ""
+            print_step "Running integration verification..."
+            echo ""
+
+            if bash "$SCRIPT_DIR/core/scripts/verify-integration.sh"; then
+                echo ""
+                print_success "✅ All integration tests passed!"
+            else
+                echo ""
+                print_error "⚠️  Integration verification failed"
+                print_info "Please review errors above"
+                print_info "You can re-run verification with:"
+                echo "  bash $SCRIPT_DIR/core/scripts/verify-integration.sh"
+                exit 1
+            fi
+        else
+            print_warning "Verification script not found (skipping)"
+        fi
+    else
+        print_info "[DRY-RUN] Would run integration verification"
+    fi
 
     if [[ "$ollama_installed" == true ]] && (is_model_pulled "$OLLAMA_MODEL" || [[ "$DRY_RUN" == true ]]); then
         show_completion_success
