@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "1.0",
+  "github": {
+    "owner": "",
+    "repo": "",
+    "default_assignee": "",
+    "auto_assign": true
+  },
+  "detection": {
+    "enabled": true,
+    "sources": {
+      "posttooluse": true,
+      "userprompt": true,
+      "git_commit": true,
+      "manual": true
+    },
+    "severity_thresholds": {
+      "auto_create_above": "medium",
+      "auto_assign_above": "high"
+    }
+  },
+  "deduplication": {
+    "enabled": true,
+    "exact_match": true,
+    "semantic_match": true,
+    "similarity_threshold": 0.95,
+    "component_grouping": true
+  },
+  "lifecycle_tracking": {
+    "enabled": true,
+    "interval_minutes": 5,
+    "stale_threshold_days": 14
+  },
+  "reminders": {
+    "enabled": true,
+    "daily_summary": {
+      "enabled": true,
+      "time": "09:00",
+      "min_issues": 1
+    },
+    "weekly_digest": {
+      "enabled": true,
+      "day": "monday",
+      "time": "09:00"
+    },
+    "stale_alerts": {
+      "enabled": true,
+      "threshold_days": 14
+    },
+    "delivery_methods": ["terminal", "file"],
+    "tracking_issue_number": null,
+    "email": null
+  },
+  "auto_closure": {
+    "enabled": true,
+    "confidence_threshold": 0.95,
+    "verify_typescript": true,
+    "verify_tests": true,
+    "verify_lint": false,
+    "manual_verification_categories": ["protected-core", "architecture"]
+  },
+  "logging": {
+    "level": "info",
+    "retain_days": 30
+  }
+}

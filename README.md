@@ -1,4 +1,4 @@
-# Claude Memory Intelligence
+# PingMem
 
 > **Never lose context again.** A fool-proof memory system that makes AI coding assistants remember what matters—across sessions, across projects, forever.
 
@@ -8,9 +8,9 @@
 
 ---
 
-## 🧠 What is Claude Memory Intelligence?
+## 🧠 What is PingMem?
 
-Claude Memory Intelligence is a **universal memory and decision-tracking system** for AI coding assistants. It solves the fundamental problem of AI context loss by maintaining a persistent, always-updated memory that survives context window resets, session changes, and project switches.
+PingMem is a **universal memory and decision-tracking system** for AI coding assistants. It solves the fundamental problem of AI context loss by maintaining a persistent, always-updated memory that survives context window resets, session changes, and project switches.
 
 Think of it as **giving your AI assistant a perfect photographic memory** of your codebase, decisions, and architectural patterns.
 
@@ -26,7 +26,7 @@ AI coding assistants like Claude Code are powerful, but they suffer from:
 
 ### The Solution
 
-Claude Memory Intelligence provides:
+PingMem provides:
 
 - ✅ **Persistent Memory**: Survives context resets and session changes
 - ✅ **Decision Intelligence**: Remembers WHY decisions were made, WHAT NOT TO DO
@@ -43,7 +43,7 @@ Claude Memory Intelligence provides:
 
 ```bash
 # 1. Install the package
-npm install -g claude-memory-intelligence
+npm install -g pingmem
 
 # 2. Initialize in your project
 cd /path/to/your/project
@@ -57,14 +57,14 @@ claude-memory-check
 
 ### Before/After Comparison
 
-**Before Claude Memory Intelligence:**
+**Before PingMem:**
 ```
 You: "Implement Supabase authentication"
 Claude: *Generates code using deprecated ANON_KEY pattern*
 Result: 🔴 Uses outdated pattern, violates protected boundaries
 ```
 
-**After Claude Memory Intelligence:**
+**After PingMem:**
 ```
 You: "Implement Supabase authentication"
 Memory System: *Injects decision record: "Use PUBLISHABLE_KEY, not ANON_KEY (deprecated 2025-01)"*
@@ -78,7 +78,7 @@ Result: ✅ Uses current pattern, follows architecture, no violations
 
 ### 1. Four-Layer Memory Architecture
 
-Claude Memory Intelligence uses a sophisticated four-layer system:
+PingMem uses a sophisticated four-layer system:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -200,22 +200,22 @@ claude-memory-query --search "database migration"
 ### Option 1: NPM Global Install (Recommended)
 
 ```bash
-npm install -g claude-memory-intelligence
+npm install -g pingmem
 claude-memory-init
 ```
 
 ### Option 2: NPX (No Installation)
 
 ```bash
-npx claude-memory-intelligence init
+npx pingmem init
 ```
 
 ### Option 3: Manual Setup
 
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/claude-memory-intelligence.git
-cd claude-memory-intelligence
+git clone https://github.com/yourusername/pingmem.git
+cd pingmem
 
 # Install dependencies
 npm install
@@ -347,7 +347,7 @@ claude-memory-query --domain auth --verbose
 
 ```javascript
 // In your code or hooks
-const { BoundaryValidator } = require('claude-memory-intelligence');
+const { BoundaryValidator } = require('pingmem');
 
 // Check before modifying protected file
 const result = BoundaryValidator.validate(
@@ -395,7 +395,7 @@ claude-memory-map
 ### System Components
 
 ```
-claude-memory-intelligence/
+pingmem/
 ├── core/
 │   ├── scripts/           # Executable tools
 │   │   ├── init-memory.js          # Initialize memory system
@@ -557,7 +557,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
-      - run: npm install -g claude-memory-intelligence
+      - run: npm install -g pingmem
       - run: claude-memory-check --strict
       - run: claude-memory-query --migration-status --fail-if-overdue
 ```
@@ -642,8 +642,8 @@ We welcome contributions! Here's how to get started:
 
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/claude-memory-intelligence.git
-cd claude-memory-intelligence
+git clone https://github.com/yourusername/pingmem.git
+cd pingmem
 
 # Install dependencies
 npm install
@@ -653,7 +653,7 @@ npm test
 
 # Test in a sample project
 cd ../test-project
-node ../claude-memory-intelligence/core/scripts/init-memory.js
+node ../pingmem/core/scripts/init-memory.js
 ```
 
 ### Contribution Guidelines
@@ -744,7 +744,7 @@ See [Decision Template](.memories/decisions/TEMPLATE.json) for the full decision
 
 MIT License - see [LICENSE](LICENSE) file for details.
 
-Copyright (c) 2025 Claude Memory Intelligence Contributors
+Copyright (c) 2025 PingMem Contributors
 
 ---
 
@@ -773,8 +773,8 @@ This project was extracted and generalized from the [PingLearn](https://github.c
 ### Getting Help
 
 - **Documentation**: Read the [Quick Start Guide](QUICK-START.md)
-- **Issues**: [GitHub Issues](https://github.com/yourusername/claude-memory-intelligence/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yourusername/claude-memory-intelligence/discussions)
+- **Issues**: [GitHub Issues](https://github.com/yourusername/pingmem/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/yourusername/pingmem/discussions)
 
 ### Reporting Bugs
 
@@ -789,7 +789,7 @@ When reporting bugs, please include:
 
 ## 🌟 Show Your Support
 
-If Claude Memory Intelligence helps you build better software, please:
+If PingMem helps you build better software, please:
 
 - ⭐ **Star this repository**
 - 🐦 **Share on Twitter** with #ClaudeMemoryIntelligence
@@ -802,12 +802,12 @@ If Claude Memory Intelligence helps you build better software, please:
 
 **Never lose context again. Never violate boundaries. Never use deprecated patterns.**
 
-**Claude Memory Intelligence - Perfect Memory for AI Coding Assistants**
+**PingMem - Perfect Memory for AI Coding Assistants**
 
 [Get Started](QUICK-START.md) • [Documentation](core/README.md) • [Templates](templates/README.md) • [Contributing](CONTRIBUTING.md)
 
 ---
 
-Made with ❤️ by the Claude Memory Intelligence community
+Made with ❤️ by the PingMem community
 
 </div>

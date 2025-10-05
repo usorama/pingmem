@@ -195,12 +195,47 @@ function triggerFileLevelScan() {
 }
 
 /**
+ * Check for errors in tool result and trigger issue detection
+ * @param {Object} result - Tool execution result
+ * @param {string} toolName - Tool name
+ * @param {string} filePath - File path
+ */
+async function checkForErrors(result, toolName, filePath) {
+  // Only check if issue tracking is enabled
+  const issueTrackingConfig = path.join(MEMORY_DIR, 'issue-tracking', 'config.json');
+  if (!fs.existsSync(issueTrackingConfig)) {
+    return; // Issue tracking not configured
+  }
+
+  // Check for errors in result
+  if (result?.error || result?.stderr) {
+    try {
+      const { handlePostToolUseError } = require('../issue-tracking/manager');
+
+      await handlePostToolUseError(
+        {
+          error: result.error,
+          stderr: result.stderr,
+          file_path: filePath,
+          args: result.args
+        },
+        toolName
+      );
+    } catch (error) {
+      if (process.env.CLAUDE_DEBUG) {
+        console.error('Issue detection error:', error.message);
+      }
+    }
+  }
+}
+
+/**
  * Main hook handler
  * @param {string} toolName - Name of the tool that was used
  * @param {Object} args - Arguments passed to the tool
  * @param {Object} result - Result from the tool execution
  */
-function handlePostToolUse(toolName, args, result) {
+async function handlePostToolUse(toolName, args, result) {
   // Check if hook is enabled
   if (!config.hooks.postToolUse.enabled || !config.memory.autoUpdate) {
     return;
@@ -236,6 +271,9 @@ function handlePostToolUse(toolName, args, result) {
     if (isCodeFile(filePath)) {
       triggerFileLevelScan();
     }
+
+    // Check for errors and trigger issue detection
+    await checkForErrors(result, toolName, filePath);
 
     // Silent success (no output to avoid cluttering terminal)
   } catch (error) {

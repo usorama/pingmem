@@ -28,19 +28,19 @@ There are many ways to contribute to Claude Memory Intelligence:
 
 1. **Fork the repository**
 
-   Click the "Fork" button on the [Claude Memory Intelligence repository](https://github.com/yourusername/claude-memory-intelligence)
+   Click the "Fork" button on the [Claude Memory Intelligence repository](https://github.com/yourusername/pingmem)
 
 2. **Clone your fork**
 
    ```bash
-   git clone https://github.com/YOUR-USERNAME/claude-memory-intelligence.git
-   cd claude-memory-intelligence
+   git clone https://github.com/YOUR-USERNAME/pingmem.git
+   cd pingmem
    ```
 
 3. **Add upstream remote**
 
    ```bash
-   git remote add upstream https://github.com/yourusername/claude-memory-intelligence.git
+   git remote add upstream https://github.com/yourusername/pingmem.git
    ```
 
 4. **Install dependencies**
@@ -55,7 +55,7 @@ There are many ways to contribute to Claude Memory Intelligence:
    cd ..
    mkdir test-project
    cd test-project
-   node ../claude-memory-intelligence/core/scripts/init-memory.js
+   node ../pingmem/core/scripts/init-memory.js
    ```
 
 ## 📋 Development Workflow
@@ -94,7 +94,7 @@ npm test
 
 # Test in a sample project
 cd ../test-project
-node ../claude-memory-intelligence/core/scripts/init-memory.js
+node ../pingmem/core/scripts/init-memory.js
 node .claude/scripts/health-check.js
 ```
 
@@ -328,8 +328,8 @@ module.exports = MainClass;
 5. Test with real project:
    ```bash
    cd ../test-your-framework-project
-   cp ../claude-memory-intelligence/templates/your-template/.memory-config.json .
-   node ../claude-memory-intelligence/core/scripts/init-memory.js
+   cp ../pingmem/templates/your-template/.memory-config.json .
+   node ../pingmem/core/scripts/init-memory.js
    ```
 
 ### Adding a New Script
@@ -498,9 +498,9 @@ Instances of abusive, harassing, or otherwise unacceptable behavior may be repor
 
 ## 📞 Questions?
 
-- **General questions**: [GitHub Discussions](https://github.com/yourusername/claude-memory-intelligence/discussions)
-- **Bug reports**: [GitHub Issues](https://github.com/yourusername/claude-memory-intelligence/issues)
-- **Feature requests**: [GitHub Issues](https://github.com/yourusername/claude-memory-intelligence/issues)
+- **General questions**: [GitHub Discussions](https://github.com/yourusername/pingmem/discussions)
+- **Bug reports**: [GitHub Issues](https://github.com/yourusername/pingmem/issues)
+- **Feature requests**: [GitHub Issues](https://github.com/yourusername/pingmem/issues)
 
 ## 📚 Resources
 

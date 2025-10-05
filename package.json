@@ -1,5 +1,5 @@
 {
-  "name": "@claude-code/memory-intelligence",
+  "name": "pingmem",
   "version": "1.0.0",
   "description": "AI memory system for Claude Code with decision intelligence, automated issue tracking, and hybrid LLM intent analysis",
   "main": "core/lib/config-loader.js",
@@ -16,7 +16,14 @@
     "docs": "echo 'Documentation available in ./docs/'",
     "health-check": "node core/scripts/health-check.js",
     "init-memory": "node core/scripts/init-memory.js",
-    "query-decisions": "node core/scripts/decision-query.js"
+    "query-decisions": "node core/scripts/decision-query.js",
+    "issue": "node core/scripts/issue-cli.js",
+    "issue:list": "node core/scripts/issue-cli.js list",
+    "issue:stats": "node core/scripts/issue-cli.js stats",
+    "issue:sync": "node core/scripts/issue-cli.js sync",
+    "issue:daily": "node core/issue-tracking/reminder.js --daily",
+    "issue:weekly": "node core/issue-tracking/reminder.js --weekly",
+    "issue:lifecycle": "node core/issue-tracking/lifecycle-tracker.js"
   },
   "keywords": [
     "claude",
@@ -33,13 +40,13 @@
   ],
   "author": "Claude Code Community",
   "license": "MIT",
-  "homepage": "https://github.com/usorama/claude-memory-intelligence#readme",
+  "homepage": "https://github.com/usorama/pingmem#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/usorama/claude-memory-intelligence.git"
+    "url": "https://github.com/usorama/pingmem.git"
   },
   "bugs": {
-    "url": "https://github.com/usorama/claude-memory-intelligence/issues"
+    "url": "https://github.com/usorama/pingmem/issues"
   },
   "engines": {
     "node": ">=18.0.0",
