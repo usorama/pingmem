@@ -1,0 +1,93 @@
+#!/usr/bin/env bash
+#
+# Pre-commit hook for Pingmem (Claude Memory Intelligence)
+# Ensures integration verification passes before allowing commit
+#
+# INSTALLATION:
+#   cp core/hooks/sample-pre-commit .git/hooks/pre-commit
+#   chmod +x .git/hooks/pre-commit
+#
+# Purpose: Prevent committing broken hooks or integration code
+# Enforcement: BLOCKS commit if verification fails
+# Bypass: Use `git commit --no-verify` ONLY if you know what you're doing
+#
+
+set -e  # Exit on first error
+
+# Colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+print_header() {
+    echo ""
+    echo -e "${BLUE}================================================${NC}"
+    echo -e "${BLUE}  Pre-Commit: Integration Verification${NC}"
+    echo -e "${BLUE}================================================${NC}"
+    echo ""
+}
+
+print_success() {
+    echo -e "${GREEN}✅ $1${NC}"
+}
+
+print_error() {
+    echo -e "${RED}❌ $1${NC}"
+}
+
+print_warning() {
+    echo -e "${YELLOW}⚠️  $1${NC}"
+}
+
+print_info() {
+    echo -e "${BLUE}ℹ️  $1${NC}"
+}
+
+# Get repo root
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+
+# Check if we're in pingmem repo
+if [[ ! -f "$REPO_ROOT/core/scripts/verify-integration.sh" ]]; then
+    print_warning "Not in pingmem repo or verification script not found"
+    print_info "Skipping integration verification"
+    exit 0
+fi
+
+print_header
+
+print_info "Running integration verification before commit..."
+echo ""
+
+# Run verification script
+if bash "$REPO_ROOT/core/scripts/verify-integration.sh"; then
+    echo ""
+    print_success "All integration tests passed!"
+    echo ""
+    print_info "Proceeding with commit..."
+    exit 0
+else
+    echo ""
+    print_error "Integration verification FAILED"
+    echo ""
+    print_warning "Commit BLOCKED to prevent broken integration"
+    echo ""
+    echo "Common issues:"
+    echo "  1. Hooks not registered in ~/.claude/settings.json"
+    echo "  2. Hook files missing or not executable"
+    echo "  3. Memory update or issue detection not working"
+    echo ""
+    echo "To fix:"
+    echo "  1. Review errors above"
+    echo "  2. Fix the failing test(s)"
+    echo "  3. Re-run: bash $REPO_ROOT/core/scripts/verify-integration.sh"
+    echo "  4. Try commit again"
+    echo ""
+    echo "To bypass (NOT RECOMMENDED):"
+    echo "  git commit --no-verify"
+    echo ""
+    print_warning "IMPORTANT: Only bypass if you're fixing the verification script itself"
+    echo ""
+    exit 1
+fi
