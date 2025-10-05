@@ -1,0 +1,114 @@
+{
+  "version": "1.0.0",
+  "projectType": "nextjs",
+  "description": "Next.js optimized memory intelligence configuration",
+
+  "features": {
+    "codebaseTracking": true,
+    "decisionIntelligence": true,
+    "intentAnalysis": "hybrid",
+    "autoUpdate": true,
+    "validationGates": false
+  },
+
+  "ollama": {
+    "enabled": true,
+    "fallback": true,
+    "model": "qwen2.5-coder:1.5b",
+    "endpoint": "http://localhost:11434",
+    "timeout": 2000,
+    "retries": 2
+  },
+
+  "boundaries": {
+    "protected": [
+      "middleware.ts",
+      "middleware.js",
+      "next.config.js",
+      "next.config.mjs",
+      "src/app/api/protected/**",
+      "app/api/protected/**",
+      "src/protected-core/**",
+      "src/core/**",
+      "src/lib/core/**",
+      "lib/core/**",
+      "src/services/core/**",
+      "prisma/schema.prisma",
+      "supabase/migrations/**"
+    ],
+    "monitored": [
+      "**/*.ts",
+      "**/*.tsx",
+      "**/*.js",
+      "**/*.jsx",
+      "app/**",
+      "src/app/**",
+      "pages/**",
+      "components/**",
+      "src/components/**",
+      "lib/**",
+      "src/lib/**",
+      "*.config.{js,ts,mjs}",
+      "package.json",
+      "tsconfig.json"
+    ],
+    "ignored": [
+      "node_modules/**",
+      ".next/**",
+      "out/**",
+      "build/**",
+      "dist/**",
+      ".git/**",
+      "*.log",
+      "coverage/**",
+      ".vercel/**",
+      ".turbo/**",
+      "public/**",
+      "*.lock",
+      "yarn.lock",
+      "pnpm-lock.yaml"
+    ]
+  },
+
+  "workflow": {
+    "enabled": false,
+    "storyPattern": "^[A-Z]+-\\d+$",
+    "requiredPhases": ["research", "plan"],
+    "manifestLocation": ".research-plan-manifests"
+  },
+
+  "memoryPaths": {
+    "root": ".memories",
+    "codebaseMap": ".memories/codebase-map.json",
+    "decisions": ".memories/decisions",
+    "validated": ".memories/validated"
+  },
+
+  "hooks": {
+    "enabled": true,
+    "postToolUse": true,
+    "userPromptSubmit": true,
+    "gitPostCommit": false
+  },
+
+  "performance": {
+    "maxConcurrentUpdates": 5,
+    "updateThrottleMs": 100,
+    "cacheDecisions": true,
+    "cacheTTL": 3600000
+  },
+
+  "nextjs": {
+    "version": "auto-detect",
+    "appRouter": true,
+    "typescript": true,
+    "protectedRoutes": [
+      "/api/protected/**",
+      "/api/auth/**"
+    ],
+    "envFiles": [
+      ".env.local",
+      ".env.production"
+    ]
+  }
+}

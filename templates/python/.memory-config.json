@@ -1,0 +1,110 @@
+{
+  "version": "1.0.0",
+  "projectType": "python",
+  "description": "Python project memory intelligence configuration",
+
+  "features": {
+    "codebaseTracking": true,
+    "decisionIntelligence": true,
+    "intentAnalysis": "hybrid",
+    "autoUpdate": true,
+    "validationGates": false
+  },
+
+  "ollama": {
+    "enabled": true,
+    "fallback": true,
+    "model": "qwen2.5-coder:1.5b",
+    "endpoint": "http://localhost:11434",
+    "timeout": 2000,
+    "retries": 2
+  },
+
+  "boundaries": {
+    "protected": [
+      "core/**/*.py",
+      "src/core/**/*.py",
+      "app/core/**/*.py",
+      "lib/**/*.py",
+      "config.py",
+      "config/**/*.py",
+      "settings.py",
+      "settings/**/*.py",
+      "database.py",
+      "models/base.py",
+      "services/core/**/*.py",
+      "utils/core/**/*.py",
+      "middleware/**/*.py",
+      "alembic/versions/**",
+      "migrations/**"
+    ],
+    "monitored": [
+      "**/*.py",
+      "requirements.txt",
+      "requirements/**/*.txt",
+      "pyproject.toml",
+      "setup.py",
+      "setup.cfg",
+      "Pipfile",
+      "poetry.lock",
+      ".env.example",
+      "alembic.ini",
+      "pytest.ini",
+      "tox.ini"
+    ],
+    "ignored": [
+      "venv/**",
+      ".venv/**",
+      "env/**",
+      "__pycache__/**",
+      "*.pyc",
+      "*.pyo",
+      "*.pyd",
+      ".Python",
+      "build/**",
+      "dist/**",
+      "*.egg-info/**",
+      ".pytest_cache/**",
+      ".mypy_cache/**",
+      ".coverage",
+      "htmlcov/**",
+      ".git/**",
+      "*.log"
+    ]
+  },
+
+  "workflow": {
+    "enabled": false,
+    "storyPattern": "^[A-Z]+-\\d+$",
+    "requiredPhases": ["research", "plan"],
+    "manifestLocation": ".research-plan-manifests"
+  },
+
+  "memoryPaths": {
+    "root": ".memories",
+    "codebaseMap": ".memories/codebase-map.json",
+    "decisions": ".memories/decisions",
+    "validated": ".memories/validated"
+  },
+
+  "hooks": {
+    "enabled": true,
+    "postToolUse": true,
+    "userPromptSubmit": true,
+    "gitPostCommit": false
+  },
+
+  "performance": {
+    "maxConcurrentUpdates": 5,
+    "updateThrottleMs": 100,
+    "cacheDecisions": true,
+    "cacheTTL": 3600000
+  },
+
+  "python": {
+    "version": "auto-detect",
+    "framework": "auto-detect",
+    "packageManager": "auto-detect",
+    "typeChecking": true
+  }
+}

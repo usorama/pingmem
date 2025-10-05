@@ -1,0 +1,97 @@
+{
+  "version": "1.0.0",
+  "projectType": "react",
+  "description": "React application memory intelligence configuration",
+
+  "features": {
+    "codebaseTracking": true,
+    "decisionIntelligence": true,
+    "intentAnalysis": "hybrid",
+    "autoUpdate": true,
+    "validationGates": false
+  },
+
+  "ollama": {
+    "enabled": true,
+    "fallback": true,
+    "model": "qwen2.5-coder:1.5b",
+    "endpoint": "http://localhost:11434",
+    "timeout": 2000,
+    "retries": 2
+  },
+
+  "boundaries": {
+    "protected": [
+      "src/core/**",
+      "src/services/**",
+      "src/lib/core/**",
+      "src/utils/core/**",
+      "src/config/**",
+      "src/api/core/**",
+      "src/contexts/AuthContext.tsx",
+      "src/contexts/ThemeContext.tsx",
+      "src/hooks/core/**",
+      "src/store/**",
+      "vite.config.ts",
+      "vite.config.js",
+      "webpack.config.js",
+      "craco.config.js"
+    ],
+    "monitored": [
+      "src/**/*.{ts,tsx,js,jsx}",
+      "public/**/*.html",
+      "*.config.{js,ts}",
+      "package.json",
+      "tsconfig.json"
+    ],
+    "ignored": [
+      "node_modules/**",
+      "build/**",
+      "dist/**",
+      ".git/**",
+      "coverage/**",
+      "*.log",
+      "public/static/**",
+      ".cache/**",
+      "*.lock",
+      "yarn.lock",
+      "pnpm-lock.yaml"
+    ]
+  },
+
+  "workflow": {
+    "enabled": false,
+    "storyPattern": "^[A-Z]+-\\d+$",
+    "requiredPhases": ["research", "plan"],
+    "manifestLocation": ".research-plan-manifests"
+  },
+
+  "memoryPaths": {
+    "root": ".memories",
+    "codebaseMap": ".memories/codebase-map.json",
+    "decisions": ".memories/decisions",
+    "validated": ".memories/validated"
+  },
+
+  "hooks": {
+    "enabled": true,
+    "postToolUse": true,
+    "userPromptSubmit": true,
+    "gitPostCommit": false
+  },
+
+  "performance": {
+    "maxConcurrentUpdates": 5,
+    "updateThrottleMs": 100,
+    "cacheDecisions": true,
+    "cacheTTL": 3600000
+  },
+
+  "react": {
+    "version": "auto-detect",
+    "bundler": "auto-detect",
+    "typescript": true,
+    "stateManagement": "auto-detect",
+    "router": "auto-detect"
+  }
+}

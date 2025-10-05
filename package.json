@@ -1,0 +1,87 @@
+{
+  "name": "@claude-code/memory-intelligence",
+  "version": "1.0.0",
+  "description": "AI memory system for Claude Code with decision intelligence, automated issue tracking, and hybrid LLM intent analysis",
+  "main": "core/lib/config-loader.js",
+  "type": "commonjs",
+  "bin": {
+    "claude-memory": "./bin/cli.js",
+    "claude-memory-init": "./installers/init.js",
+    "claude-memory-check": "./core/scripts/health-check.js"
+  },
+  "scripts": {
+    "install": "node installers/post-install.js",
+    "test": "node tests/run-all.js",
+    "lint": "eslint .",
+    "docs": "echo 'Documentation available in ./docs/'",
+    "health-check": "node core/scripts/health-check.js",
+    "init-memory": "node core/scripts/init-memory.js",
+    "query-decisions": "node core/scripts/decision-query.js"
+  },
+  "keywords": [
+    "claude",
+    "claude-code",
+    "ai-memory",
+    "context-management",
+    "decision-intelligence",
+    "llm",
+    "ollama",
+    "automated-tracking",
+    "github-issues",
+    "codebase-intelligence",
+    "developer-tools"
+  ],
+  "author": "Claude Code Community",
+  "license": "MIT",
+  "homepage": "https://github.com/usorama/claude-memory-intelligence#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/usorama/claude-memory-intelligence.git"
+  },
+  "bugs": {
+    "url": "https://github.com/usorama/claude-memory-intelligence/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "dependencies": {
+    "minimatch": "^9.0.3",
+    "uuid": "^9.0.1"
+  },
+  "optionalDependencies": {
+    "ollama": "^0.5.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0"
+  },
+  "peerDependencies": {
+    "@anthropic/claude-code": ">=1.0.0"
+  },
+  "files": [
+    "core/",
+    "templates/",
+    "installers/",
+    "docs/",
+    "bin/",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "install.sh",
+    "install.js"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "preferGlobal": true,
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
+  "cpu": [
+    "x64",
+    "arm64"
+  ]
+}

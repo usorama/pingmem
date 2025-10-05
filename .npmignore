@@ -1,0 +1,31 @@
+# Development files
+tests/
+.github/
+.vscode/
+.idea/
+
+# Documentation (too large for npm)
+docs/technical/
+docs/research/
+
+# Git
+.git/
+.gitignore
+
+# CI/CD
+.travis.yml
+.gitlab-ci.yml
+circle.yml
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+*.swp
+*.swo
+*~

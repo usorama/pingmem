@@ -1,0 +1,11 @@
+# Memory Intelligence System
+.memories/
+.memory-cache/
+
+# Keep configuration
+!.memory-config.json
+
+# React build outputs
+build/
+dist/
+.cache/

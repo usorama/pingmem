@@ -1,0 +1,6 @@
+# Memory Intelligence System
+.memories/
+.memory-cache/
+
+# Keep configuration but ignore data
+!.memory-config.json

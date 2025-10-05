@@ -1,0 +1,12 @@
+# Memory Intelligence System
+.memories/
+.memory-cache/
+
+# Keep configuration
+!.memory-config.json
+
+# Next.js
+.next/
+out/
+.vercel/
+.turbo/

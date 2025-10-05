@@ -1,0 +1,75 @@
+{
+  "version": "1.0.0",
+  "projectType": "auto-detect",
+  "description": "Default memory intelligence configuration for generic projects",
+
+  "features": {
+    "codebaseTracking": true,
+    "decisionIntelligence": true,
+    "intentAnalysis": "hybrid",
+    "autoUpdate": true,
+    "validationGates": false
+  },
+
+  "ollama": {
+    "enabled": true,
+    "fallback": true,
+    "model": "qwen2.5-coder:1.5b",
+    "endpoint": "http://localhost:11434",
+    "timeout": 2000,
+    "retries": 2
+  },
+
+  "boundaries": {
+    "protected": [
+      "core/**",
+      "lib/core/**",
+      "src/core/**",
+      "config/**"
+    ],
+    "monitored": [
+      "**/*.ts",
+      "**/*.js",
+      "**/*.json",
+      "**/*.md"
+    ],
+    "ignored": [
+      "node_modules/**",
+      "dist/**",
+      "build/**",
+      ".git/**",
+      "*.log",
+      "coverage/**",
+      ".next/**",
+      ".vercel/**"
+    ]
+  },
+
+  "workflow": {
+    "enabled": false,
+    "storyPattern": "^[A-Z]+-\\d+$",
+    "requiredPhases": ["research", "plan"],
+    "manifestLocation": ".research-plan-manifests"
+  },
+
+  "memoryPaths": {
+    "root": ".memories",
+    "codebaseMap": ".memories/codebase-map.json",
+    "decisions": ".memories/decisions",
+    "validated": ".memories/validated"
+  },
+
+  "hooks": {
+    "enabled": true,
+    "postToolUse": true,
+    "userPromptSubmit": true,
+    "gitPostCommit": false
+  },
+
+  "performance": {
+    "maxConcurrentUpdates": 5,
+    "updateThrottleMs": 100,
+    "cacheDecisions": true,
+    "cacheTTL": 3600000
+  }
+}
